@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
     console.log(user);
 
     if (user.user.email) {
-      this.router.navigate(['/tab1']);
+      this.router.navigate(['/tabs']);
     } else {
       alert('login failed!');
     }
