@@ -3,6 +3,15 @@
     <ion-title>
       Home
     </ion-title>
+<!--     <ion-buttons slot="end">
+      <ion-button color="danger">
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-button slot="end" color="danger" (click)="logout()">
+      <ion-icon name="log-out-sharp" slot="end"></ion-icon>
+      Logout
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 

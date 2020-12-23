@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { NavController } from '@ionic/angular';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-tab1',
@@ -8,7 +10,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class Tab1Page {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private navCtrl: NavController, private authService: AuthenticationService) {}
 
   friends: any = [];
 
@@ -20,4 +22,14 @@ export class Tab1Page {
       });
   }
 
+  logout() {
+    this.authService.logoutUser()
+      .then(res => {
+        console.log(res);
+        this.navCtrl.navigateBack('');
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
 }
