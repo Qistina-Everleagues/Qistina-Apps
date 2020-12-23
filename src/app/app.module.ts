@@ -13,11 +13,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { PopovercomponentPageModule } from './popovercomponent/popovercomponent.module'; 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebase), AngularFireAuthModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule.initializeApp(environment.firebase), AngularFireAuthModule, PopovercomponentPageModule],
   providers: [
     StatusBar,
     SplashScreen,
