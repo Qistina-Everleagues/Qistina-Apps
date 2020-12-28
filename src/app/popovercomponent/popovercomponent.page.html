@@ -1,0 +1,14 @@
+<ion-card-content style="text-align: center;">
+  <ion-button color="primary" (click)="runHttp()">Run Http</ion-button>
+    <ion-scroll>
+        <ion-list *ngFor="let friend of friends">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="https://ui-avatars.com/api/?name={{ friend.name }}&background=random">
+            </ion-avatar>
+            <h3> {{ friend.name }} </h3> &nbsp; - &nbsp; <h5> {{ friend.age }} </h5> &nbsp; - &nbsp; <h5> {{ friend.city }} </h5>
+          </ion-item>
+        </ion-list>
+        <ion-button color="danger" (click)="ClosePopover()">Close</ion-button>
+    </ion-scroll>
+</ion-card-content>

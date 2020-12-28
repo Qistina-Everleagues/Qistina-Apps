@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewChild, ElementRef } from "@angular/core";
+import { NavController } from '@ionic/angular';
+import { AuthenticationService } from '../services/authentication.service';
 
 declare var google: any; 
 
@@ -43,7 +45,7 @@ export class Tab3Page {
     }
   ];
 
-  constructor() {}
+  constructor(private navCtrl: NavController, private authService: AuthenticationService) {}
 
   ionViewDidEnter() {
     this.showMap();
@@ -107,6 +109,17 @@ export class Tab3Page {
     }
     this.map = new google.maps.Map(this.mapRef.nativeElement, options);
     this.addMarkersToMap(this.markers);
+  }
+
+  logout() {
+    this.authService.logoutUser()
+      .then(res => {
+        console.log(res);
+        this.navCtrl.navigateBack('');
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
 }

@@ -12,7 +12,7 @@ import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page'
 })
 export class Tab1Page {
 
-  constructor(private http: HttpClient, private navCtrl: NavController, private authService: AuthenticationService, private popover: PopoverController) {}
+  constructor(private http: HttpClient, private navCtrl: NavController, private authService: AuthenticationService, public popoverController: PopoverController) {}
 
   friends: any = [];
 
@@ -24,13 +24,23 @@ export class Tab1Page {
       });
   }
 
-  CreatePopover()
+  /* CreatePopover()
    {
-     this.popover.create({component:PopovercomponentPage,
+     this.popover.create({component:PopovercomponentPage, cssClass: 'custom-popover',
      showBackdrop:false}).then((popoverElement)=>{
        popoverElement.present();
      })
-   }
+   } */
+
+   async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PopovercomponentPage,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
+  }
 
   logout() {
     this.authService.logoutUser()

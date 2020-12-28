@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { Photo, PhotoService } from '../services/photo.service';
+import { NavController } from '@ionic/angular';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-tab2',
@@ -9,7 +11,7 @@ import { Photo, PhotoService } from '../services/photo.service';
 })
 export class Tab2Page {
 
-  constructor(public photoService: PhotoService, public actionSheetController: ActionSheetController) {}
+  constructor(public photoService: PhotoService, public actionSheetController: ActionSheetController, private navCtrl: NavController, private authService: AuthenticationService) {}
 
   async ngOnInit() {
     await this.photoService.loadSaved();
@@ -35,5 +37,16 @@ export class Tab2Page {
       }]
     });
     await actionSheet.present();
+  }
+
+  logout() {
+    this.authService.logoutUser()
+      .then(res => {
+        console.log(res);
+        this.navCtrl.navigateBack('');
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 }
